@@ -57,7 +57,7 @@ Validation of such inputs must be equivalent to performing the following steps i
 * Since <code>OP_SUCCESSx</code> precedes size check of initial stack and push opcodes, an <code>OP_SUCCESSx</code>-derived opcode requiring stack elements bigger than 520 bytes may uplift the limit in a softfork.
 * <code>OP_SUCCESSx</code> may also redefine the behavior of existing opcodes so they could work together with the new opcode. For example, if an <code>OP_SUCCESSx</code>-derived opcode works with 64-bit integers, it may also allow the existing arithmetic opcodes in the ''same script'' to do the same.
 * Given that <code>OP_SUCCESSx</code> even causes potentially unparseable scripts to pass, it can be used to introduce multi-byte opcodes, or even a completely new scripting language when prefixed with a specific <code>OP_SUCCESSx</code> opcode.</ref>.
-## If any push opcode fails to decode because it would extend past the end of the tapscript, fail.
+## If any opcode fails to decode (for example, because it is a push opcode that would extend past the end of the tapscript), fail.
 # If the '''initial stack''' as defined in bip-taproot (i.e., the witness stack after removing both the optional annex and the two last stack elements after that) violates any resource limits (stack size, and size of the elements in the stack; see "Resource Limits" below), fail. Note that this check can be bypassed using <code>OP_SUCCESSx</code>.
 # The tapscript is executed according to the rules in the following section, with the initial stack as input.
 ## If execution fails for any reason, fail.
